@@ -1,14 +1,7 @@
-# kickstart.nvim
+# nvim-config 
 
 ## Introduction
-
-A starting point for Neovim that is:
-
-* Small
-* Single-file
-* Completely Documented
-
-**NOT** a Neovim distribution, but instead a starting point for your configuration.
+My personal config for nvim built from [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 
 ## Installation
 

@@ -121,8 +121,9 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Tab navigation
 vim.keymap.set('n', '<leader>tn', vim.cmd.tabnew, { noremap = true, silent = true, desc = 'Create new tab' })
-vim.keymap.set('n', '<TAB>', ':tabnext<CR>', { noremap = true, silent = true, desc = 'Next tab' })
-vim.keymap.set('n', '<S-TAB>', ':tabprevious<CR>', { noremap = true, silent = true, desc = 'Previous tab' })
+vim.keymap.set('n', '<leader>tc', vim.cmd.tabclose, { noremap = true, silent = true, desc = 'Close tab' })
+vim.keymap.set('n', '<leader>tl', ':tabnext<CR>', { noremap = true, silent = true, desc = 'Next tab' })
+vim.keymap.set('n', '<leader>th', ':tabprevious<CR>', { noremap = true, silent = true, desc = 'Previous tab' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -264,7 +265,7 @@ require('lazy').setup({
       -- Document existing key chains
       spec = {
         { '<leader>s', group = '[S]earch' },
-        { '<leader>t', group = '[T]oggle' },
+        { '<leader>t', group = '[T]oggle OR [T]ab' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },

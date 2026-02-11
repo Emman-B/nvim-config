@@ -33,7 +33,7 @@ vim.schedule(function()
 end)
 -- use OSC52 (allows using clipboard when SSH'ing into ubuntu) (might need testing on windows)
 vim.g.clipboard = {
-  name = 'OSC52',
+  name = 'OSC 52',
   copy = {
     ['+'] = require('vim.ui.clipboard.osc52').copy '+',
     ['*'] = require('vim.ui.clipboard.osc52').copy '*',

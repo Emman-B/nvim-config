@@ -380,7 +380,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>gr', builtin.git_bcommits_range, { desc = "[g]it buffer's commits in [r]ange" })
       vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = '[g]it [b]ranches' })
       vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = '[g]it [s]tatus' })
-      vim.keymap.set('n', '<leader>gt', builtin.git_stash, { desc = '[g]it S[t]ash' })
+      vim.keymap.set('n', '<leader>gh', builtin.git_stash, { desc = '[g]it Stas[h]' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -564,7 +564,7 @@ require('lazy').setup({
           --
           -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('<leader>th', function()
+            map('<leader>tH', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end

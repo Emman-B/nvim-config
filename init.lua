@@ -374,6 +374,14 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
+      -- git pickers
+      vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = '[g]it [c]ommits' })
+      vim.keymap.set('n', '<leader>gC', builtin.git_bcommits, { desc = "[g]it buffer's [C]ommits" })
+      vim.keymap.set('n', '<leader>gr', builtin.git_bcommits_range, { desc = "[g]it buffer's commits in [r]ange" })
+      vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = '[g]it [b]ranches' })
+      vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = '[g]it [s]tatus' })
+      vim.keymap.set('n', '<leader>gt', builtin.git_stash, { desc = '[g]it S[t]ash' })
+
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.

@@ -92,6 +92,12 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- [[ Commands ]]
+-- For any commands defined via vim.api.nvim_create_user_command
+vim.api.nvim_create_user_command('Tmux', function()
+  vim.cmd 'terminal tmux'
+end, {})
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 

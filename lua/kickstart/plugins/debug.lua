@@ -27,32 +27,39 @@ return {
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
     {
-      '<F5>',
+      '<leader>dd',
       function()
         require('dap').continue()
       end,
       desc = 'Debug: Start/Continue',
     },
     {
-      '<F1>',
+      '<leader>dl',
       function()
         require('dap').step_into()
       end,
       desc = 'Debug: Step Into',
     },
     {
-      '<F2>',
+      '<leader>dj',
       function()
         require('dap').step_over()
       end,
       desc = 'Debug: Step Over',
     },
     {
-      '<F3>',
+      '<leader>dh',
       function()
         require('dap').step_out()
       end,
       desc = 'Debug: Step Out',
+    },
+    {
+      '<leader>db',
+      function()
+        require('dap').toggle_breakpoint()
+      end,
+      desc = 'Debug: Toggle Breakpoint',
     },
     {
       '<leader>b',
@@ -62,6 +69,13 @@ return {
       desc = 'Debug: Toggle Breakpoint',
     },
     {
+      '<leader>dB',
+      function()
+        require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+      end,
+      desc = 'Debug: Set Breakpoint',
+    },
+    {
       '<leader>B',
       function()
         require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
@@ -69,6 +83,13 @@ return {
       desc = 'Debug: Set Breakpoint',
     },
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+    {
+      '<leader>do',
+      function()
+        require('dapui').toggle()
+      end,
+      desc = 'Debug: See last session result.',
+    },
     {
       '<F7>',
       function()
@@ -142,6 +163,34 @@ return {
         -- On Windows delve must be run attached or it crashes.
         -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
         detached = vim.fn.has 'win32' == 0,
+      },
+    }
+
+    -- Experimental, not sure if this will work universally across different setups
+    dap.adapters.ruby = function(callback, config)
+      local uid = vim.fn.systemlist('id -u')[1]
+      local pattern = '/run/user/' .. uid .. '/rdbg-*'
+      local sockets = vim.fn.glob(pattern, false, true)
+
+      if #sockets == 0 then
+        vim.notify('No rdbg sockets found!', vim.log.levels.ERROR)
+        return
+      elseif #sockets == 1 then
+        callback { type = 'pipe', pipe = sockets[1] }
+      else
+        vim.ui.select(sockets, { prompt = 'Select rdbg socket:' }, function(choice)
+          if choice then
+            callback { type = 'pipe', pipe = choice }
+          end
+        end)
+      end
+    end
+
+    dap.configurations.ruby = {
+      {
+        type = 'ruby',
+        name = 'Attach to existing rdbg socket',
+        request = 'attach',
       },
     }
   end,

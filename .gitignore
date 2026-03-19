@@ -5,3 +5,7 @@ nvim
 
 spell/
 # lazy-lock.json
+
+# Ignore work-specfic plugins
+lua/work/
+lua/ignore_work/
